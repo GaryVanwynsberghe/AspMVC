@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
 namespace Roomy.Models
 {
-    public class User
+    public class User : BaseModel
     {
         [Required(ErrorMessage = "Le champ {0} est obligatoire")]
         [Display(Name = "Nom")]
@@ -33,7 +34,8 @@ namespace Roomy.Models
         [Required(ErrorMessage = "Le champ {0} est obligatoire")]
         [Display(Name = "Mot de passe")]
         [DataType(DataType.Password)]
-        [RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\da-zA-Z]).{6,}$", ErrorMessage ="{0} incorrect.")]
+        [RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\da-zA-Z]).{6,}$",
+            ErrorMessage = "{0} incorrect.")]
         public string Password { get; set; }
 
 
@@ -41,5 +43,12 @@ namespace Roomy.Models
         [DataType(DataType.Password)]
         [Compare("Password", ErrorMessage = "Erreur sur la confirmation du mot de passe.")]
         public string ConfirmedPassword { get; set; }
+
+        [Required(ErrorMessage = "Civilité obligatoire")]
+        [Display(Name = "Civilité")]
+        public int CivilityID { get; set; }
+
+        [ForeignKey("CivilityID")]
+        public Civility Civility { get; set; }
     }
 }

@@ -1,0 +1,23 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!--<div class="row">
+    <div class="col-md-3"></div>    //Pour centrer le formulaire mais il faut enlever la class "row" et "col-md-6" dans create.
+    <div class="col-md-6">-->
+<div class="card">
+    <div class="card-header">
+        @RenderSection("SectionTitle", true)
+    </div>
+    <div class="card-body">
+        @RenderBody()
+    </div>
+</div>
+<!--</div>
+    <div class="col-md-3"></div>
+</div>-->
+@section SectionScripts{
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    @RenderSection("SectionScripts", false)
+}

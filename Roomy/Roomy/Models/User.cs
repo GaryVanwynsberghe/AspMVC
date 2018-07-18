@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Roomy.Utils.Validators;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -24,11 +25,13 @@ namespace Roomy.Models
                             @"\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\" +
                             @".)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$",
               ErrorMessage = "L'adresse mail n'est pas au bon format")]
+        [ExistingMailUser(ErrorMessage = "L'email existe déjà")]
         public string Mail { get; set; }
 
         [Required(ErrorMessage = "Le champ {0} est obligatoire")]
         [Display(Name = "Date de naissance")]
         [DataType(DataType.Date)]
+        [Major(18, ErrorMessage = "Attention, vous devez être majeur!")]
         public DateTime BirthDate { get; set; }
 
         [Required(ErrorMessage = "Le champ {0} est obligatoire")]
@@ -42,6 +45,7 @@ namespace Roomy.Models
         [Display(Name = "Confirmation du mot de passe")]
         [DataType(DataType.Password)]
         [Compare("Password", ErrorMessage = "Erreur sur la confirmation du mot de passe.")]
+        [NotMapped]//permet de ne pas avoir de champ en basse de données
         public string ConfirmedPassword { get; set; }
 
         [Required(ErrorMessage = "Civilité obligatoire")]

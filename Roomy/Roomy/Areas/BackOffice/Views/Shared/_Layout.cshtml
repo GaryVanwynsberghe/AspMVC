@@ -8,14 +8,15 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>_Layout</title>
+    <title>Backoffice | @ViewBag.Title</title>
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
     <link href="~/Content/roomy.css" rel="stylesheet" />
 </head>
 <body>
     <div class="container">
+        <h1>Backoffice</h1>
         <bs-navbar>
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <nav class="navbar navbar-expand-lg navbar-light bg-info">
                 <a class="navbar-brand" href="#">Roomy</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -24,16 +25,10 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item col-auto">
-                            <a href="~/"><span>Accueil</span></a>
+                            <a href="@Url.Action("Index","Home", new { area = "" })"><span>App</span></a>
                         </li>
                         <li class="nav-item col-auto">
-                            <a href="@Url.Action("About","Home")"><span>A propos</span></a>
-                        </li>
-                        <li class="nav-item col-auto">
-                            <a href="@Url.Action("Create","Users")"><span>Nouvel utilisateur</span></a>
-                        </li>
-                        <li class="nav-item col-auto">
-                            <a href="@Url.Action("Index","Dashboard", new { area = "BackOffice" })"><span>BO</span></a>
+                            <a href="@Url.Action("Index","Dashboard")"><span>Backoffice</span></a>
                         </li>
                     </ul>
                 </div>
@@ -42,8 +37,8 @@
 
         @RenderBody()
 
-        <footer class="bg-light">
-            &copy; POEC Rouen 2018
+        <footer class="bg-info">
+            &copy; BACKOFFICE POEC Rouen 2018
         </footer>
 
     </div>
@@ -53,6 +48,6 @@
     <script src="~/Scripts/jquery-3.0.0.min.js"></script>
     <script src="~/Scripts/popper.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
-    @RenderSection("SectionScripts",false)
+    @RenderSection("SectionScripts", false)
 </body>
 </html>

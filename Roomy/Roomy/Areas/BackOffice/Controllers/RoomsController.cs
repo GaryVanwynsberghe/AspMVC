@@ -18,7 +18,7 @@ namespace Roomy.Areas.BackOffice.Controllers
         // GET: BackOffice/Rooms
         public ActionResult Index()
         {
-            var rooms = db.Rooms.Include(r => r.User);
+            var rooms = db.Rooms.Include(r => r.User).Include(x => x.Category);
             return View(rooms.ToList());
         }
 
@@ -30,7 +30,7 @@ namespace Roomy.Areas.BackOffice.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             //Room room = db.Rooms.Find(id);
-            Room room = db.Rooms.Include(x => x.User).SingleOrDefault(x => x.ID == id);
+            Room room = db.Rooms.Include(x => x.User).Include(x => x.Category).SingleOrDefault(x => x.ID == id);
             if (room == null)
             {
                 return HttpNotFound();
@@ -42,6 +42,7 @@ namespace Roomy.Areas.BackOffice.Controllers
         public ActionResult Create()
         {
             ViewBag.UserID = new SelectList(db.Users, "ID", "Lastname");
+            ViewBag.CategoryID = new SelectList(db.Categories, "ID", "Name");
             return View();
         }
 
@@ -50,7 +51,7 @@ namespace Roomy.Areas.BackOffice.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Name,Capacity,Price,Description,CreatedAt,UserID")] Room room)
+        public ActionResult Create([Bind(Include = "ID,Name,Capacity,Price,Description,CreatedAt,UserID,CategoryID")] Room room)
         {
             if (ModelState.IsValid)
             {
@@ -60,6 +61,7 @@ namespace Roomy.Areas.BackOffice.Controllers
             }
 
             ViewBag.UserID = new SelectList(db.Users, "ID", "Lastname", room.UserID);
+            ViewBag.CategoryID = new SelectList(db.Categories, "ID", "Name", room.CategoryID);
             return View(room);
         }
 
@@ -76,6 +78,7 @@ namespace Roomy.Areas.BackOffice.Controllers
                 return HttpNotFound();
             }
             ViewBag.UserID = new SelectList(db.Users, "ID", "Lastname", room.UserID);
+            ViewBag.CategoryID = new SelectList(db.Categories, "ID", "Name", room.CategoryID);
             return View(room);
         }
 
@@ -84,8 +87,13 @@ namespace Roomy.Areas.BackOffice.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Name,Capacity,Price,Description,CreatedAt,UserID")] Room room)
+        public ActionResult Edit([Bind(Include = "ID,Name,Capacity,Price,Description,CreatedAt,UserID,CategoryID")] Room room)
         {
+            //Lorsque l'on veut enlever une donnée dans edit, on doit aller récuperer son ancienne valeur dans la BDD
+            //var old = db.Rooms.Find(room.ID);
+            //room.CreatedAt = old.CreatedAt;
+            //db.Entry(old).State = EntityState.Detached;
+
             if (ModelState.IsValid)
             {
                 db.Entry(room).State = EntityState.Modified;
@@ -93,6 +101,7 @@ namespace Roomy.Areas.BackOffice.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.UserID = new SelectList(db.Users, "ID", "Lastname", room.UserID);
+            ViewBag.CategoryID = new SelectList(db.Categories, "ID", "Name", room.CategoryID);
             return View(room);
         }
 

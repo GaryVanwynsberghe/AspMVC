@@ -40,5 +40,12 @@ namespace Roomy.Models
         [ForeignKey("UserID")]
         public User User { get; set; }
 
+
+        [Required(ErrorMessage = "Le champ {0} est obligatoire.")]
+        [Display(Name = "Categorie")]
+        public int CategoryID { get; set; }
+
+        [ForeignKey("CategoryID")]
+        public User Category { get; set; }
     }
 }

@@ -10,6 +10,7 @@
     <meta name="viewport" content="width=device-width" />
     <title>Backoffice | @ViewBag.Title</title>
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
     <link href="~/Content/roomy.css" rel="stylesheet" />
 </head>
 <body>
@@ -30,6 +31,15 @@
                         <li class="nav-item col-auto">
                             <a href="@Url.Action("Index","Dashboard")"><span>Backoffice</span></a>
                         </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Salles
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="@Url.Action("Index","Rooms")">Voir les salles</a>
+                                <a class="dropdown-item" href="@Url.Action("Create","Rooms")">Ajouter</a>                              
+                            </div>
+                        </li>
                     </ul>
                 </div>
             </nav>
@@ -48,6 +58,8 @@
     <script src="~/Scripts/jquery-3.0.0.min.js"></script>
     <script src="~/Scripts/popper.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
     @RenderSection("SectionScripts", false)
 </body>
 </html>

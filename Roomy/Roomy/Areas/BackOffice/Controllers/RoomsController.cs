@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -13,7 +14,7 @@ namespace Roomy.Areas.BackOffice.Controllers
 {
     public class RoomsController : Controller
     {
-        private RoomyDbContext db = new RoomyDbContext();
+        private RoomyGaryDbContext db = new RoomyGaryDbContext();
 
         // GET: BackOffice/Rooms
         public ActionResult Index()
@@ -72,6 +73,8 @@ namespace Roomy.Areas.BackOffice.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+            //Room room = db.Rooms.Include(x => x.Files).SingleOrDefault(x => x.ID == id); ou les deux lignes suivantes
+            var rooms = db.Rooms.Include(r => r.Files).SingleOrDefault(x => x.ID == id);
             Room room = db.Rooms.Find(id);
             if (room == null)
             {
@@ -112,6 +115,7 @@ namespace Roomy.Areas.BackOffice.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+            var rooms = db.Rooms.Include(r => r.Files).SingleOrDefault(x => x.ID == id);
             Room room = db.Rooms.Find(id);
             if (room == null)
             {
@@ -131,6 +135,32 @@ namespace Roomy.Areas.BackOffice.Controllers
             return RedirectToAction("Index");
         }
 
+        [HttpPost]
+        public ActionResult AddFile(int id, HttpPostedFileBase upload)
+        {
+            if (upload.ContentLength > 0)
+            {
+
+                var model = new RoomFile();
+
+                model.RoomID = id;
+                model.Name = upload.FileName;
+                model.ContentType = upload.ContentType;
+
+                using (var reader = new BinaryReader(upload.InputStream))
+                {
+                    model.Content = reader.ReadBytes(upload.ContentLength);
+                }
+
+                db.RoomFiles.Add(model);
+                db.SaveChanges();
+
+                return RedirectToAction("Edit", new { id = model.RoomID });
+            }
+            else
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        }
+        
         protected override void Dispose(bool disposing)
         {
             if (disposing)

@@ -348,27 +348,20 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201807171312300_Init.cs" />
-    <Compile Include="Migrations\201807171312300_Init.Designer.cs">
-      <DependentUpon>201807171312300_Init.cs</DependentUpon>
+    <Compile Include="Migrations\201807200727052_Init.cs" />
+    <Compile Include="Migrations\201807200727052_Init.Designer.cs">
+      <DependentUpon>201807200727052_Init.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201807180822114_DropColumnConfirmedUser.cs" />
-    <Compile Include="Migrations\201807180822114_DropColumnConfirmedUser.Designer.cs">
-      <DependentUpon>201807180822114_DropColumnConfirmedUser.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201807181349226_AddRoom.cs" />
-    <Compile Include="Migrations\201807181349226_AddRoom.Designer.cs">
-      <DependentUpon>201807181349226_AddRoom.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201807191021019_AddCategory.cs" />
-    <Compile Include="Migrations\201807191021019_AddCategory.Designer.cs">
-      <DependentUpon>201807191021019_AddCategory.cs</DependentUpon>
+    <Compile Include="Migrations\201807200832526_AddRoomFiles.cs" />
+    <Compile Include="Migrations\201807200832526_AddRoomFiles.Designer.cs">
+      <DependentUpon>201807200832526_AddRoomFiles.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BaseModel.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Civility.cs" />
     <Compile Include="Models\Room.cs" />
+    <Compile Include="Models\RoomFile.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utils\Extensions.cs" />
@@ -416,17 +409,11 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201807171312300_Init.resx">
-      <DependentUpon>201807171312300_Init.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201807200727052_Init.resx">
+      <DependentUpon>201807200727052_Init.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201807180822114_DropColumnConfirmedUser.resx">
-      <DependentUpon>201807180822114_DropColumnConfirmedUser.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201807181349226_AddRoom.resx">
-      <DependentUpon>201807181349226_AddRoom.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201807191021019_AddCategory.resx">
-      <DependentUpon>201807191021019_AddCategory.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201807200832526_AddRoomFiles.resx">
+      <DependentUpon>201807200832526_AddRoomFiles.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -33,7 +33,7 @@ namespace Roomy.Models
         [Required(ErrorMessage = "Le champ {0} est obligatoire.")]
         [Display(Name = "Date de création")]
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:dddd dd mmmm yyyy}")]//format d'affichage qui va avoir dans la vue
+        [DisplayFormat(DataFormatString = "{0:dddd dd MMMM yyyy}")]//format d'affichage qui va avoir dans la vue
         public DateTime CreatedAt { get; set; }
 
         [Display(Name = "Utilisateur/créateur")]
@@ -49,5 +49,7 @@ namespace Roomy.Models
 
         [ForeignKey("CategoryID")]
         public Category Category { get; set; }
+
+        public ICollection<RoomFile> Files { get; set; } //(permet de rechercher un fichier) 
     }
 }

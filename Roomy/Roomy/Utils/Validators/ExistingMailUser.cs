@@ -11,7 +11,7 @@ namespace Roomy.Utils.Validators
     {        
         public override bool IsValid(object value)
         {
-            using(RoomyDbContext db = new RoomyDbContext())
+            using(RoomyGaryDbContext db = new RoomyGaryDbContext())
             {
                return !db.Users.Any(x => x.Mail == value.ToString());
             }

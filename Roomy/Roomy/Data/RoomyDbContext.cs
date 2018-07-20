@@ -7,9 +7,9 @@ using System.Web;
 
 namespace Roomy.Data
 {
-    public class RoomyDbContext : DbContext
+    public class RoomyGaryDbContext : DbContext
     {
-        public RoomyDbContext() : base("roomy")
+        public RoomyGaryDbContext() : base("roomygary")
         {
 
         }
@@ -21,6 +21,8 @@ namespace Roomy.Data
         public DbSet<Room> Rooms { get; set; }
 
         public DbSet<Category> Categories { get; set; }
+
+        public DbSet<RoomFile> RoomFiles { get; set; }
 
     }
 }

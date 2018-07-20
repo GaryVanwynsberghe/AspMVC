@@ -11,7 +11,7 @@ namespace Roomy.Controllers
 {
     public class UsersController : Controller
     {
-        private RoomyDbContext db = new RoomyDbContext();
+        private RoomyGaryDbContext db = new RoomyGaryDbContext();
 
         // GET: Users
         [HttpGet]

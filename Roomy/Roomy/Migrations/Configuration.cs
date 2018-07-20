@@ -7,14 +7,14 @@ using System.Web;
 
 namespace Roomy.Migrations
 {
-    public class Configuration : DbMigrationsConfiguration<RoomyDbContext>
+    public class Configuration : DbMigrationsConfiguration<RoomyGaryDbContext>
     {
         public Configuration()
         {
             this.AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(RoomyDbContext context)
+        protected override void Seed(RoomyGaryDbContext context)
         {
             /*context.Civilities.AddOrUpdate(
                 new Models.Civility { Label = "Monsieur" },

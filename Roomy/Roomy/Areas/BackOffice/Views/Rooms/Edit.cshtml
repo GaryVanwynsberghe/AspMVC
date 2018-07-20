@@ -6,6 +6,7 @@
 
 <h2>Edit</h2>
 
+
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
@@ -79,9 +80,31 @@
     </div>
 }
 
+<hr />
+<div class="row">
+    @foreach (var file in Model.Files)
+    {
+        <div class="col-md-3">
+            <img class="img-thumbnail" title="@file.Name" src="data:@file.ContentType;base64, @System.Convert.ToBase64String(file.Content)"/>
+            <p>@file.Name <a href="#" class="btn btn-danger"><i class="fa fa-remove"></i></a></p>
+        </div>
+    }
+</div>
+
+
+<form action="@Url.Action("AddFile", "Rooms")" method="post" enctype="multipart/form-data">
+    @Html.HiddenFor(x => x.ID)
+    <div class="form-group">
+        <label>Fichier</label>
+        <input type="file" name="upload" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-warning">Ajouter</button>
+</form>
+
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
+
 @section SectionScripts{
     <script src="~/Scripts/tinymce/tinymce.min.js"></script>
     <script>

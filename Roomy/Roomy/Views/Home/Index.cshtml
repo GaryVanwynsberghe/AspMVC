@@ -1,41 +1,49 @@
 ﻿
-        <h2>Accueil</h2>
-        <!--<bs-navbar>
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <a class="navbar-brand" href="#">Roomy</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+<h2>Accueil</h2>
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item col-auto">
-                            <a href="~/"><span>Accueil</span></a>
-                        </li>
-                        <li class="nav-item col-auto">
-                            <a href="@Url.Action("About","Home")"><span>A propos</span></a>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
-        </bs-navbar>-->
-        
-        @*
-            <h1>Accueil</h1>
-
-            <a href="~/a-propos">A propos</a>
-            <br />
-            <!--Lien entre fichier avec helper:-->
-            @Html.ActionLink("A propos", "About", "Home")
-            <br />
-            <!--Pour intégrer du HTML-->
-            <a href="@Url.Action("About","Home")"><span>A propos</span></a>
-            <br />
-            <a href="@Url.RouteUrl("AboutRoute")">A propos</a>
-        *@
+@if (TempData["Message"] != null && !string.IsNullOrWhiteSpace(TempData["Message"].ToString()))
+{
+    <div class="alert alert-success">@TempData["Message"].ToString()</div>
+}
 
 
 
-   
+@* <!--<bs-navbar>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="#">Roomy</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item col-auto">
+                        <a href="~/"><span>Accueil</span></a>
+                    </li>
+                    <li class="nav-item col-auto">
+                        <a href="@Url.Action("About","Home")"><span>A propos</span></a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </bs-navbar>-->
+
+    @*
+        <h1>Accueil</h1>
+
+        <a href="~/a-propos">A propos</a>
+        <br />
+        <!--Lien entre fichier avec helper:-->
+        @Html.ActionLink("A propos", "About", "Home")
+        <br />
+        <!--Pour intégrer du HTML-->
+        <a href="@Url.Action("About","Home")"><span>A propos</span></a>
+        <br />
+        <a href="@Url.RouteUrl("AboutRoute")">A propos</a>
+*@
+
+
+
+
 <!--Commentaire html visible côté clients-->
 @* Commentaire Razor non visible côté clients *@

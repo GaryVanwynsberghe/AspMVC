@@ -1,0 +1,13 @@
+﻿@model IEnumerable<Roomy.Models.Room>
+@{ 
+    Layout = null;
+}
+<div class="row">
+    <div class="col-md-3">
+        @foreach(var item in Model)
+        {
+            <p>@item.Name</p>
+            <p>@item.Price €</p>
+        }
+    </div>
+</div>

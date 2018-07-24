@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Roomy.Controllers;
 using Roomy.Data;
 using Roomy.Filters;
 using Roomy.Models;
@@ -13,13 +14,14 @@ using Roomy.Models;
 namespace Roomy.Areas.BackOffice.Controllers
 {
     [AuthenticationFilter]
-    public class CategoriesController : Controller
+    public class CategoriesController : BaseController
     {
         private RoomyGaryDbContext db = new RoomyGaryDbContext();
 
         // GET: BackOffice/Categories
         public ActionResult Index()
         {
+            //this.DisplayMessage("OK")
             return View(db.Categories.ToList());
         }
 
@@ -55,6 +57,7 @@ namespace Roomy.Areas.BackOffice.Controllers
             {
                 db.Categories.Add(category);
                 db.SaveChanges();
+                DisplayMessage("Catégorie enregistrée.", MessageType.SUCCESS);
                 return RedirectToAction("Index");
             }
 

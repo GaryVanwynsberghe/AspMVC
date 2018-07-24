@@ -56,6 +56,15 @@
                     </span>
                 </div>
             </nav>
+
+            @if(TempData["Message"] != null)
+            {
+                <div class="alert alert-@TempData["MessageType"].ToString()">
+                    @TempData["Message"].ToString()
+                </div>
+            }
+
+
         </bs-navbar>
 
         @RenderBody()
